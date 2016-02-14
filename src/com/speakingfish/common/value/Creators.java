@@ -11,19 +11,19 @@ import com.speakingfish.common.function.Mapper;
 public class Creators {
     
     public static final Creator<HashMap<Object, Object>, Void> CREATOR_defaultHashMap = new Creator<HashMap<Object, Object>, Void>() {
-        @Override public HashMap<Object, Object> create(Void params) { return new HashMap<Object, Object>(); }
+        public HashMap<Object, Object> create(Void params) { return new HashMap<Object, Object>(); }
     };
     
     public static final Creator<TreeMap<Object, Object>, Void> CREATOR_defaultTreeMap = new Creator<TreeMap<Object, Object>, Void>() {
-        @Override public TreeMap<Object, Object> create(Void params) { return new TreeMap<Object, Object>(); }
+        public TreeMap<Object, Object> create(Void params) { return new TreeMap<Object, Object>(); }
     };
     
     public static final Creator<LinkedList<Object>, Void> CREATOR_defaultLinkedList = new Creator<LinkedList<Object>, Void>() {
-        @Override public LinkedList<Object> create(Void params) { return new LinkedList<Object>(); }
+        public LinkedList<Object> create(Void params) { return new LinkedList<Object>(); }
     };
     
     public static final Creator<ArrayList<Object>, Void> CREATOR_defaultArrayList = new Creator<ArrayList<Object>, Void>() {
-        @Override public ArrayList<Object> create(Void params) { return new ArrayList<Object>(); }
+        public ArrayList<Object> create(Void params) { return new ArrayList<Object>(); }
     };
     
     @SuppressWarnings("unchecked")
@@ -48,7 +48,7 @@ public class Creators {
     
     public static final <RESULT, PARAMS> Creator<RESULT, PARAMS> creator(final Mapper<RESULT, PARAMS> mapper) {
         return new Creator<RESULT, PARAMS>() {
-            @Override public RESULT create(PARAMS params) {
+            public RESULT create(PARAMS params) {
                 return mapper.apply(params);
             }
         };
@@ -56,7 +56,7 @@ public class Creators {
     
     public static final <RESULT, SRC> Mapper<RESULT, SRC> mapper(final Creator<RESULT, SRC> creator) {
         return new Mapper<RESULT, SRC>() {
-            @Override public RESULT apply(SRC src) {
+            public RESULT apply(SRC src) {
                 return creator.create(src);
             }
         };

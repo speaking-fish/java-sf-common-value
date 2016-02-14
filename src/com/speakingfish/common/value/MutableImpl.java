@@ -1,6 +1,5 @@
 package com.speakingfish.common.value;
 
-
 public class MutableImpl<T> extends DefaultGetter<T> implements Mutable<T> {
 
     protected T _value;
@@ -11,7 +10,7 @@ public class MutableImpl<T> extends DefaultGetter<T> implements Mutable<T> {
     }
 
     @Override public T get() { return _value; }
-
-    @Override public void set(T value) { _value = value; }
+    
+    public void set(T value) { _value = value; }
 
 }

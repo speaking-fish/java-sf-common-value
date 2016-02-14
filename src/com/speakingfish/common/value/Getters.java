@@ -18,7 +18,7 @@ public class Getters {
 
     public static <RESULT, PARAMS> Getter<RESULT> simpleFactory(final Creator<RESULT, PARAMS> creator, final PARAMS params) {
         return new Getter<RESULT>() {
-            @Override public RESULT get() {
+            public RESULT get() {
                 return creator.create(params);
             }
         };
@@ -26,7 +26,7 @@ public class Getters {
     
     public static <T> Invoker<T> lazyInvoker(final Getter<? extends Invoker<T>> getter) {
         return new Invoker<T>() {
-            @Override public void invoke(T value) {
+            public void invoke(T value) {
                 getter.get().invoke(value);
             }};
     }
@@ -53,7 +53,7 @@ public class Getters {
     
     public static <DEST, SRC> Creator<Invoker<SRC>, Invoker<DEST>> invokerCreator(final Mapper<DEST, SRC> mapper) {
         return new Creator<Invoker<SRC>, Invoker<DEST>>() {
-            @Override public Invoker<SRC> create(Invoker<DEST> invokerParam) {
+            public Invoker<SRC> create(Invoker<DEST> invokerParam) {
                 return invoker(mapper, invokerParam);
             }
         };
@@ -61,7 +61,7 @@ public class Getters {
     
     public static <RESULT, SRC> Mapper<RESULT, SRC> mapper(final Getter<? extends Mapper<RESULT, SRC>> getter) {
         return new Mapper<RESULT, SRC>() {
-            @Override public RESULT apply(SRC value) {
+            public RESULT apply(SRC value) {
                 return getter.get().apply(value);
             }};
     }
@@ -104,7 +104,7 @@ public class Getters {
     }
     
     public static final Mapper<Object, Getter<Object>> MAPPER_GETTER = new Mapper<Object, Getter<Object>>() {
-        @Override public Object apply(Getter<Object> value) {
+        public Object apply(Getter<Object> value) {
             return value.get();
         }
     };
