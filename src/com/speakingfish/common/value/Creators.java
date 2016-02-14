@@ -11,19 +11,19 @@ import com.speakingfish.common.function.Mapper;
 public class Creators {
     
     public static final Creator<HashMap<Object, Object>, Void> CREATOR_defaultHashMap = new Creator<HashMap<Object, Object>, Void>() {
-        public HashMap<Object, Object> create(Void params) { return new HashMap<Object, Object>(); }
+        public HashMap<Object, Object> apply(Void params) { return new HashMap<Object, Object>(); }
     };
     
     public static final Creator<TreeMap<Object, Object>, Void> CREATOR_defaultTreeMap = new Creator<TreeMap<Object, Object>, Void>() {
-        public TreeMap<Object, Object> create(Void params) { return new TreeMap<Object, Object>(); }
+        public TreeMap<Object, Object> apply(Void params) { return new TreeMap<Object, Object>(); }
     };
     
     public static final Creator<LinkedList<Object>, Void> CREATOR_defaultLinkedList = new Creator<LinkedList<Object>, Void>() {
-        public LinkedList<Object> create(Void params) { return new LinkedList<Object>(); }
+        public LinkedList<Object> apply(Void params) { return new LinkedList<Object>(); }
     };
     
     public static final Creator<ArrayList<Object>, Void> CREATOR_defaultArrayList = new Creator<ArrayList<Object>, Void>() {
-        public ArrayList<Object> create(Void params) { return new ArrayList<Object>(); }
+        public ArrayList<Object> apply(Void params) { return new ArrayList<Object>(); }
     };
     
     @SuppressWarnings("unchecked")
@@ -48,19 +48,20 @@ public class Creators {
     
     public static final <RESULT, PARAMS> Creator<RESULT, PARAMS> creator(final Mapper<RESULT, PARAMS> mapper) {
         return new Creator<RESULT, PARAMS>() {
-            public RESULT create(PARAMS params) {
+            public RESULT apply(PARAMS params) {
                 return mapper.apply(params);
             }
         };
     }
     
-    public static final <RESULT, SRC> Mapper<RESULT, SRC> mapper(final Creator<RESULT, SRC> creator) {
-        return new Mapper<RESULT, SRC>() {
-            public RESULT apply(SRC src) {
-                return creator.create(src);
-            }
-        };
-    }
+//    public static final <RESULT, SRC> Mapper<RESULT, SRC> mapper(final Creator<RESULT, SRC> creator) {
+////        return new Mapper<RESULT, SRC>() {
+////            public RESULT apply(SRC src) {
+////                return creator.apply(src);
+////            }
+////        };
+//        return creator;
+//    }
     
     
 }

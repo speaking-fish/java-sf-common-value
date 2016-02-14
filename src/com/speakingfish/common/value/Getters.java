@@ -19,7 +19,7 @@ public class Getters {
     public static <RESULT, PARAMS> Getter<RESULT> simpleFactory(final Creator<RESULT, PARAMS> creator, final PARAMS params) {
         return new Getter<RESULT>() {
             public RESULT get() {
-                return creator.create(params);
+                return creator.apply(params);
             }
         };
     }
@@ -53,7 +53,7 @@ public class Getters {
     
     public static <DEST, SRC> Creator<Invoker<SRC>, Invoker<DEST>> invokerCreator(final Mapper<DEST, SRC> mapper) {
         return new Creator<Invoker<SRC>, Invoker<DEST>>() {
-            public Invoker<SRC> create(Invoker<DEST> invokerParam) {
+            public Invoker<SRC> apply(Invoker<DEST> invokerParam) {
                 return invoker(mapper, invokerParam);
             }
         };
