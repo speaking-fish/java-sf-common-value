@@ -12,7 +12,7 @@ repositories {
 jar {
     manifest {
         attributes(
-            'Implementation-Title': 'Speakingfish value holder utilities module',
+            'Implementation-Title': 'Speakingfish value holders module',
             'Implementation-Version': version
         )
     }
