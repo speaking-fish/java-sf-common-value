@@ -1,11 +1,14 @@
 package com.speakingfish.common.value;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.TreeMap;
 
 import com.speakingfish.common.function.Creator;
+import com.speakingfish.common.function.Getter;
 import com.speakingfish.common.function.Mapper;
 
 public class Creators {
@@ -45,10 +48,18 @@ public class Creators {
     public static <V> Creator<ArrayList<V>, Void> defaultArrayList() {
         return (Creator<ArrayList<V>, Void>) (Object) CREATOR_defaultArrayList;
     }
-    
+
     public static final <RESULT, PARAMS> Creator<RESULT, PARAMS> creator(final Mapper<RESULT, PARAMS> mapper) {
         return new Creator<RESULT, PARAMS>() {
             public RESULT apply(PARAMS params) {
+                return mapper.apply(params);
+            }
+        };
+    }
+
+    public static final <RESULT, PARAMS> Getter<RESULT> getter(final PARAMS params, final Mapper<? extends RESULT, PARAMS> mapper) {
+        return new Getter<RESULT>() {
+            public RESULT get() {
                 return mapper.apply(params);
             }
         };

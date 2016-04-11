@@ -16,7 +16,7 @@ public class Getters {
     
     public static <T> Getter<T> getter(T value) { return new ImmutableGetter<T>(value); }
 
-    public static <RESULT, PARAMS> Getter<RESULT> simpleFactory(final Creator<RESULT, PARAMS> creator, final PARAMS params) {
+    public static <RESULT, PARAMS> Getter<RESULT> simpleFactory(final Mapper<RESULT, PARAMS> creator, final PARAMS params) {
         return new Getter<RESULT>() {
             public RESULT get() {
                 return creator.apply(params);
