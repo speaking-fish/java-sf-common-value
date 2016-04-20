@@ -29,26 +29,46 @@ public class Creators {
         public ArrayList<Object> apply(Void params) { return new ArrayList<Object>(); }
     };
     
-    @SuppressWarnings("unchecked")
-    public static <K, V> Creator<HashMap<K, V>, Void> defaultHashMap() {
-        return (Creator<HashMap<K, V>, Void>) (Object) CREATOR_defaultHashMap;
-    }
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    public static <K, V> Creator<HashMap<K, V>, Void> defaultCreatorHashMap() { return (Creator) CREATOR_defaultHashMap   ; }
 
-    @SuppressWarnings("unchecked")
-    public static <K, V> Creator<TreeMap<K, V>, Void> defaultTreeMap() {
-        return (Creator<TreeMap<K, V>, Void>) (Object) CREATOR_defaultTreeMap;
-    }
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    public static <K, V> Creator<TreeMap<K, V>, Void> defaultCreatorTreeMap() { return (Creator) CREATOR_defaultTreeMap   ; }
 
-    @SuppressWarnings("unchecked")
-    public static <V> Creator<LinkedList<V>, Void> defaultLinkedList() {
-        return (Creator<LinkedList<V>, Void>) (Object) CREATOR_defaultLinkedList;
-    }
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    public static <V> Creator<LinkedList<V>, Void> defaultCreatorLinkedList() { return (Creator) CREATOR_defaultLinkedList; }
     
-    @SuppressWarnings("unchecked")
-    public static <V> Creator<ArrayList<V>, Void> defaultArrayList() {
-        return (Creator<ArrayList<V>, Void>) (Object) CREATOR_defaultArrayList;
-    }
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    public static <V> Creator<ArrayList <V>, Void> defaultCreatorArrayList () { return (Creator) CREATOR_defaultArrayList ; }
 
+    public static final Getter<HashMap<Object, Object>> GETTER_defaultHashMap = new Getter<HashMap<Object, Object>>() {
+        public HashMap<Object, Object> get() { return new HashMap<Object, Object>(); }
+    };
+    
+    public static final Getter<TreeMap<Object, Object>> GETTER_defaultTreeMap = new Getter<TreeMap<Object, Object>>() {
+        public TreeMap<Object, Object> get() { return new TreeMap<Object, Object>(); }
+    };
+    
+    public static final Getter<LinkedList<Object>> GETTER_defaultLinkedList = new Getter<LinkedList<Object>>() {
+        public LinkedList<Object> get() { return new LinkedList<Object>(); }
+    };
+    
+    public static final Getter<ArrayList<Object>> GETTER_defaultArrayList = new Getter<ArrayList<Object>>() {
+        public ArrayList<Object> get() { return new ArrayList<Object>(); }
+    };
+    
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    public static <K, V> Getter<HashMap<K, V>> defaultGetterHashMap() { return (Getter) GETTER_defaultHashMap   ; }
+
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    public static <K, V> Getter<TreeMap<K, V>> defaultGetterTreeMap() { return (Getter) GETTER_defaultTreeMap   ; }
+
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    public static <V> Getter<LinkedList<V>> defaultGetterLinkedList() { return (Getter) GETTER_defaultLinkedList; }
+    
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    public static <V> Getter<ArrayList <V>> defaultGetterArrayList () { return (Getter) GETTER_defaultArrayList ; }
+    
     public static final <RESULT, PARAMS> Creator<RESULT, PARAMS> creator(final Mapper<RESULT, PARAMS> mapper) {
         return new Creator<RESULT, PARAMS>() {
             public RESULT apply(PARAMS params) {
